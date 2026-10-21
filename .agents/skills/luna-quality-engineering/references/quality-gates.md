@@ -1,0 +1,163 @@
+# Luna Quality Gates
+
+This document is the canonical trigger and completion contract for the Luna Quality Engineering Layer. The shared execution policy, TDD triggers, review-axis definitions, and readiness are canonical in the Core policy referenced by the active instruction chain (template default: `docs/CORE_ENGINEERING_PROTOCOL_V2.md`). Consult `engineering-disciplines.md` for supporting techniques when those triggers apply.
+
+## 1. requirement-check
+
+Trigger before architecture or implementation when the request is material, multi-step, security-sensitive, destructive, migration-related, or has acceptance ambiguity.
+
+Check:
+- intended outcome;
+- constraints and non-goals;
+- acceptance criteria;
+- affected components and interfaces;
+- destructive/irreversible actions;
+- assumptions that could change architecture or scope.
+
+If unresolved choices can materially change architecture, scope, security, data contracts, operations, or acceptance criteria, escalate from a simple check to **requirement grilling**. Resolve facts Luna can inspect before asking the user. Ask the user for decisions that cannot be safely inferred, work through prerequisite decisions before dependent ones, and do not begin implementation while a critical branch remains silently assumed.
+
+Proceed without asking when ambiguity is low and a safe interpretation is available. Requirement grilling ends when no unresolved branch can materially change the implementation.
+
+## 2. multi-lens-review
+
+Trigger for consequential architecture or behavior changes.
+
+Use independent lenses as applicable:
+- architecture and module boundaries;
+- security and trust boundaries;
+- operations/reliability and failure modes;
+- maintainability/testability/upgrade path.
+
+When module boundaries or interfaces are changing, also apply **deep-module design**: prefer a small stable interface hiding cohesive behavior, keep volatile integrations behind adapters, reduce shotgun changes and leaky boundaries, and reject speculative abstraction without a current requirement.
+
+Do not collapse conflicting findings into consensus. State the conflict, evidence, tradeoff, and decision owner.
+
+## 3. self-review
+
+Trigger after every material implementation before declaring verification complete.
+
+Review:
+- requested behavior vs actual diff;
+- correctness and edge cases;
+- security implications;
+- unintended regressions;
+- error handling and failure modes;
+- tests added/updated and what they prove;
+- docs/config/schema/API drift;
+- unrelated changes.
+
+For suitable new behavior or bug fixes, verify that the implementation used or preserved an appropriate behavioral test seam and that tests do not merely mirror implementation details.
+
+## 4. fresh-eyes-review
+
+Trigger when author-context bias is likely: large diffs, long sessions, generated code, refactors, complex migrations, or repeated edits to the same area.
+
+Review only durable inputs when possible: requirement/acceptance criteria plus final diff/artifact and repository-defined contracts. Avoid relying on the implementation narrative as proof.
+
+## 5. ssot-audit
+
+Trigger when the same fact, setting, policy, workflow step, status, interface definition, or constant appears in multiple durable locations.
+
+Output:
+- duplicated fact;
+- canonical source candidate;
+- stale/derived copies;
+- safe consolidation or pointer plan.
+
+Do not consolidate merely similar prose when the contexts intentionally serve different audiences.
+
+## 6. clean-rebuild
+
+Evaluate when local repair has become structurally unsafe.
+
+Signals:
+- workaround-on-workaround chains;
+- duplicated branches for legacy behavior;
+- conditionals that encode historical patches instead of current requirements;
+- architecture boundary erosion;
+- inability to explain the current invariant;
+- tests proving only patches rather than intended behavior.
+
+Prefer a bounded clean rebuild only when behavior can be specified and regression-verified. Preserve externally observable contracts unless an intentional breaking change is approved.
+
+## 7. fact-check
+
+Trigger when an external factual claim materially affects the result.
+
+Typical claims:
+- software/version support;
+- API or platform behavior;
+- security standards/CVEs/advisories;
+- OS/runtime compatibility;
+- product licensing or lifecycle;
+- performance or operational limits.
+
+Use authoritative primary sources when available. Mark each material claim as verified, repository-evidenced, inferred, or unresolved. Never convert plausibility into fact.
+
+## 8. project-catchup
+
+Trigger before resuming stale or interrupted work when current state is uncertain.
+
+Reconstruct from durable evidence in this order when available:
+1. repository and default branch;
+2. active task branch and HEAD;
+3. open/related PR and review state;
+4. recent commits and diff from base;
+5. issues/todos/decision docs;
+6. test/CI state;
+7. unresolved blockers and next best action.
+
+Do not use remembered session context to override newer durable repository evidence.
+
+## Engineering discipline gates
+
+These are cross-cutting disciplines rather than additional checklist quotas.
+
+### Test-first vertical slicing
+
+Trigger when Protocol v2 section 6 justifies test-first work and an automated behavioral seam is practical. A practical seam alone does not require TDD for trivial reversible changes.
+
+Completion criteria:
+- the critical public/observable seam is identified;
+- at least the material behavioral slices are driven by a red-capable test before their implementation;
+- each cycle changes one coherent vertical slice rather than bulk-writing speculative tests;
+- expected values come from the requirement, known-good behavior, or another source independent of the implementation;
+- a valid failing test is not weakened merely to make the code pass.
+
+When no practical seam exists, disclose why and use the strongest faithful verification loop available.
+
+### Evidence-first debugging
+
+Trigger for bugs, regressions, outages, flaky behavior, and performance problems.
+
+Evidence required for a root-cause claim:
+- a feedback loop or other discriminating evidence targets the exact symptom;
+- the failure is reproduced and minimised as far as practical;
+- multiple falsifiable hypotheses are considered when the cause is not already proven;
+- instrumentation/tests discriminate between hypotheses rather than merely add logs;
+
+When remediation is requested, also verify the fix against both the minimal reproduction and the original scenario where practical, add a meaningful regression test where justified, and remove temporary instrumentation. A diagnostic-only investigation does not require a source change or regression test to establish a cause.
+
+If causal evidence is insufficient, label the conclusion unresolved or provisional. Select readiness from the actual delivery and verification state; successful diagnosis alone does not imply a fix is merge-ready.
+
+### Dual-axis review
+
+Trigger for material diffs before merge-ready status.
+
+Run and report two independent axes:
+
+Use **Behavioral correctness** and **Codebase fit** as defined in Protocol v2 section 8. Keep evidence and severity distinct by axis rather than maintaining a second definition here.
+
+Do not let one axis mask the other. If no reliable requirement source exists, disclose the acceptance-fidelity limitation and still inspect observable behavior; do not fabricate requirements or waive the rest of behavioral review.
+
+## Severity and readiness
+
+- BLOCKER: must resolve before merge-ready.
+- IMPORTANT: should resolve before merge unless explicitly accepted with rationale.
+- SUGGESTION: optional improvement.
+
+Readiness and review-independence are canonical in the active Core policy §§8, 12–13. Required checks must pass; disclosing an unavailable check does not satisfy it. Independent Code Review is required for material implementation. If either is outstanding, use `review-ready`, not `merge-ready`. Report analysis-only work as `diagnostic-only`.
+
+## Anti-ceremony rule
+
+Quality gates are risk controls, not a checklist quota. Skip a gate when it cannot materially improve confidence, and document unavailable material verification rather than fabricating it.
