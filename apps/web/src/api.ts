@@ -37,6 +37,28 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   return response.json() as Promise<T>
 }
 
+export function pairingErrorMessage(error: unknown): string {
+  if (error instanceof ApiError) {
+    if (error.code === 'invalid_pairing_code') return '코드를 잘못 입력했거나 만료·사용된 코드예요. PC에서 새 연결 코드를 발급받아 입력해 주세요.'
+    if (error.code === 'pairing_rate_limited') return '연결 시도가 여러 번 실패해 잠시 제한됐어요. 최대 10분 후 새 연결 코드로 다시 시도해 주세요.'
+    if (error.code === 'pairing_timeout') return '서버 응답이 늦어 연결을 중단했어요. 네트워크를 확인하고 다시 시도해 주세요. 코드가 이미 사용됐다면 새 코드를 발급받아 주세요.'
+    if (error.status === 422) return 'PC에 표시된 영문·숫자 8자리 연결 코드를 확인해 주세요.'
+    return error.message
+  }
+  return error instanceof Error ? error.message : '기기를 연결하지 못했어요. 다시 시도해 주세요.'
+}
+
+async function pairDevice(code: string) {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 15_000)
+  try {
+    return await request<{ authenticated: true; csrf_token: string; expires_at: string }>('/api/auth/pair', { method: 'POST', body: JSON.stringify({ code }), signal: controller.signal })
+  } catch (error) {
+    if (controller.signal.aborted) throw new ApiError(504, 'pairing_timeout', '연결 응답이 늦어요.', true)
+    throw error
+  } finally { clearTimeout(timer) }
+}
+
 const id = () => crypto.randomUUID()
 export function buildAudioForm(blob: Blob, question: SessionState['question'], retry: boolean) {
   const form = new FormData()
@@ -57,7 +79,7 @@ export function buildReviewAudioForm(blob: Blob) {
 }
 export const api = {
   capabilities: () => request<Capabilities>('/api/capabilities'),
-  pair: (code: string) => request<{ authenticated: true; csrf_token: string; expires_at: string }>('/api/auth/pair', { method: 'POST', body: JSON.stringify({ code }) }),
+  pair: pairDevice,
   logout: () => request<{ ok: true }>('/api/auth/logout', { method: 'POST' }),
   scenarios: () => request<{ items: Scenario[] }>('/api/scenarios'),
   createSession: (scenarioId: string, signal?: AbortSignal) => request<SessionState>('/api/sessions', { method: 'POST', body: JSON.stringify({ scenario_id: scenarioId, idempotency_key: id() }), signal }),

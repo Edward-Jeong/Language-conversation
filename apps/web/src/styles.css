@@ -66,3 +66,5 @@ input, textarea, select { width:100%; border:1px solid var(--border); border-rad
 .latency-details p { margin:9px 0 0;font-size:.68rem;color:var(--muted); }
 .review-actions { display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap; }
 .review-feedback { margin:14px 0; }.review-feedback .notice { margin-bottom:0; }.review-next { width:100%;margin-top:12px; }
+
+.pair-card .pair-error { margin:12px 0 0; font-size:.9rem; }

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { BookOpen, ChevronRight, CircleUserRound, Clock3, Coffee, Download, Headphones, History, Home, Lightbulb, LoaderCircle, LogOut, MessageCircle, Mic, Pause, Play, RotateCcw, Settings, ShieldCheck, Square, Trash2, Upload, Volume2, WifiOff } from 'lucide-react'
-import { ApiError, api, setCsrfToken } from './api'
+import { ApiError, api, pairingErrorMessage, setCsrfToken } from './api'
 import type { Capabilities, Evaluation, HistorySession, MediaState, ReviewItem, ReviewResult, Scenario, SessionState, SessionSummary, SupportProgress, Turn } from './types'
 import { VoiceLoop } from './voice'
 
@@ -45,6 +45,8 @@ export function App() {
   const [sessionMinutes, setSessionMinutes] = useState(() => Number(localStorage.getItem('lc_minutes') || 10))
   const [pairCode, setPairCode] = useState('')
   const [pairBusy, setPairBusy] = useState(false)
+  const [pairError, setPairError] = useState('')
+  const pairInFlight = useRef(false)
   const [pageVisible, setPageVisible] = useState(() => document.visibilityState === 'visible')
   const [online, setOnline] = useState(() => navigator.onLine)
   const [latency, setLatency] = useState<{ vadMs?: number; serverRoundTripMs?: number; ttsQueueMs?: number; totalMs?: number }>({})
@@ -148,14 +150,17 @@ export function App() {
   }
 
   async function pair(event: React.FormEvent) {
-    event.preventDefault(); setPairBusy(true); setError('')
+    event.preventDefault()
+    if (pairInFlight.current) return
+    pairInFlight.current = true
+    setPairBusy(true); setPairError('')
     try {
       const result = await api.pair(pairCode.trim())
       setCsrfToken(result.csrf_token)
       setCaps((current) => current ? { ...current, authenticated: true } : current)
       setPairCode('')
       await loadPrivate()
-    } catch (cause) { setError(messageOf(cause)) } finally { setPairBusy(false) }
+    } catch (cause) { setPairError(pairingErrorMessage(cause)) } finally { pairInFlight.current = false; setPairBusy(false) }
   }
 
   function listen() {
@@ -372,7 +377,7 @@ export function App() {
     <main className="main" id="main-content">
       {!online && <Notice tone="warning" icon={WifiOff}>오프라인이에요. 개인 기록은 기기에 임시 저장하지 않으며, 연결 후 직접 다시 시도해 주세요.</Notice>}
       {error && <Notice tone="danger">{error}<button className="text-button" onClick={() => setError('')}>닫기</button></Notice>}
-      {!caps && !error ? <Loading label="PC 앱과 연결을 확인하는 중" /> : !authenticated ? <PairCard code={pairCode} setCode={setPairCode} onSubmit={pair} busy={pairBusy} /> : <>
+      {!caps && !error ? <Loading label="PC 앱과 연결을 확인하는 중" /> : !authenticated ? <PairCard code={pairCode} setCode={setPairCode} onSubmit={pair} busy={pairBusy} error={pairError} /> : <>
         {page === 'home' && <HomePage caps={caps!} scenarios={scenarios} reviews={reviews} savedSession={savedSession} busy={busy} onStart={startScenario} onResume={resumeSaved} onNavigate={navigate} />}
         {page === 'conversation' && <ConversationPage caps={caps!} session={session} summary={summary} scenarios={scenarios} evaluation={evaluation} lastTurn={lastTurn} transcript={transcript} setTranscript={setTranscript} draft={draft} setDraft={setDraft} hint={hint} supportProgress={supportProgress} alternativeVisible={alternativeVisible} media={media} mediaDetail={mediaDetail} voiceName={voiceName} latency={latency} busy={busy} pausedByLifecycle={pausedByLifecycle} providerReady={providerReady} showTranslation={showTranslation} onStart={startScenario} onListen={listen} onFinish={voice.finish.bind(voice)} onSubmitText={submitText} onSaveTranscript={saveTranscript} onTranscriptSuspect={markTranscriptSuspect} onHint={requestHint} onContinue={continueAfterCorrection} onSkip={skipQuestion} onRevealAlternative={revealAlternative} onAcceptSupport={acceptSupportProposal} onReplay={() => session?.status === 'active' && session.question && voice.speak(session.question.text_en, listen)} onStopVoice={() => voice.cancel('음성 재생을 중지했어요.')} onPause={togglePause} onEnd={endSession} />}
         {page === 'review' && <ReviewPage items={reviews} results={reviewResults} setResult={(id,result)=>setReviewResults((values)=>({...values,[id]:result}))} clearResult={(id)=>setReviewResults((values)=>{const next={...values};delete next[id];return next})} reload={loadPrivate} media={media} onVoice={startReviewVoice} onFinishVoice={voice.finish.bind(voice)} />}
@@ -389,8 +394,9 @@ function NavButton({ item, active, onClick }: { item: typeof NAV[number]; active
 function Notice({ children, tone, icon: Icon }: { children: React.ReactNode; tone: 'warning'|'danger'; icon?: typeof WifiOff }) { return <div className={`notice ${tone}`} role="alert">{Icon && <Icon size={19}/>}<span>{children}</span></div> }
 function Loading({ label }: { label: string }) { return <div className="loading"><LoaderCircle className="spin"/><p>{label}</p></div> }
 
-function PairCard({ code, setCode, onSubmit, busy }: { code: string; setCode: (v: string) => void; onSubmit: (e: React.FormEvent) => void; busy: boolean }) {
-  return <section className="pair-card"><div className="eyebrow"><ShieldCheck size={15}/> 개인 기기 연결</div><h1>PC에 표시된<br/>연결 코드를 입력하세요.</h1><p>코드는 한 번만 사용할 수 있고 잠시 후 만료돼요. PC에서 새 연결 코드를 다시 발급할 수 있어요.</p><form onSubmit={onSubmit}><label htmlFor="pair-code">연결 코드</label><input id="pair-code" autoComplete="one-time-code" inputMode="text" autoCapitalize="characters" spellCheck={false} value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} placeholder="예: AB12CD34" required/><button className="primary" disabled={busy || !code.trim()}>{busy ? '연결 중…' : '이 기기 연결하기'}</button></form></section>
+function PairCard({ code, setCode, onSubmit, busy, error }: { code: string; setCode: (v: string) => void; onSubmit: (e: React.FormEvent) => void; busy: boolean; error: string }) {
+  useEffect(() => { if (error) document.getElementById("pair-error")?.scrollIntoView({ block: "center", behavior: "auto" }) }, [error])
+  return <section className="pair-card"><div className="eyebrow"><ShieldCheck size={15}/> 개인 기기 연결</div><h1>PC에 표시된<br/>연결 코드를 입력하세요.</h1><p>코드는 한 번만 사용할 수 있고 잠시 후 만료돼요. PC에서 새 연결 코드를 다시 발급할 수 있어요.</p><form onSubmit={onSubmit}><label htmlFor="pair-code">연결 코드</label><input id="pair-code" aria-invalid={Boolean(error)} aria-describedby={error ? "pair-error" : undefined} autoComplete="one-time-code" inputMode="text" autoCapitalize="characters" spellCheck={false} value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} placeholder="예: AB12CD34" required/>{error && <p id="pair-error" className="notice danger pair-error" role="alert">{error}</p>}<button className="primary" disabled={busy || !code.trim()}>{busy ? '연결 중…' : '이 기기 연결하기'}</button></form></section>
 }
 
 function HomePage({ caps, scenarios, reviews, savedSession, busy, onStart, onResume, onNavigate }: { caps: Capabilities; scenarios: Scenario[]; reviews: ReviewItem[]; savedSession: boolean; busy: boolean; onStart: (id: string) => void; onResume: () => void; onNavigate: (page: Page) => void }) {
