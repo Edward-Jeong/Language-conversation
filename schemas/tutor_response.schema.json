@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tutor_response_v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "turn_id", "transcript_version", "evaluation_status", "intent_achieved", "meaning_summary_ko", "correction", "optional_alternative", "retry_prompt_en", "next_question_en", "uncertainty_reason"],
+  "properties": {
+    "schema_version": {"const": "1"},
+    "turn_id": {"type": "string", "minLength": 1, "maxLength": 64},
+    "transcript_version": {"type": "integer", "minimum": 1},
+    "evaluation_status": {"enum": ["ready", "unassessable"]},
+    "intent_achieved": {"type": ["boolean", "null"]},
+    "meaning_summary_ko": {"type": ["string", "null"], "maxLength": 240},
+    "correction": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["needed", "original_span", "suggested_en", "reason_ko"],
+          "properties": {
+            "needed": {"const": false},
+            "original_span": {"type": "null"},
+            "suggested_en": {"type": "null"},
+            "reason_ko": {"type": "null"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["needed", "original_span", "suggested_en", "reason_ko"],
+          "properties": {
+            "needed": {"const": true},
+            "original_span": {"type": "string", "minLength": 1, "maxLength": 160},
+            "suggested_en": {"type": "string", "minLength": 1, "maxLength": 240},
+            "reason_ko": {"type": "string", "minLength": 1, "maxLength": 240}
+          }
+        }
+      ]
+    },
+    "optional_alternative": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "object", "additionalProperties": false, "required": ["text_en", "usage_ko"], "properties": {"text_en": {"type": "string", "minLength": 1, "maxLength": 240}, "usage_ko": {"type": "string", "minLength": 1, "maxLength": 240}}}
+      ]
+    },
+    "retry_prompt_en": {"type": ["string", "null"], "maxLength": 240},
+    "next_question_en": {"type": ["string", "null"], "maxLength": 240},
+    "uncertainty_reason": {"type": ["string", "null"], "maxLength": 240}
+  },
+  "allOf": [
+    {
+      "anyOf": [
+        {
+          "properties": {
+            "evaluation_status": {"const": "ready"},
+            "intent_achieved": {"type": "boolean"},
+            "uncertainty_reason": {"type": "null"}
+          }
+        },
+        {
+          "properties": {
+            "evaluation_status": {"const": "unassessable"},
+            "intent_achieved": {"type": "null"},
+            "meaning_summary_ko": {"type": "null"},
+            "correction": {
+              "type": "object",
+              "properties": {
+                "needed": {"const": false},
+                "original_span": {"type": "null"},
+                "suggested_en": {"type": "null"},
+                "reason_ko": {"type": "null"}
+              }
+            },
+            "optional_alternative": {"type": "null"},
+            "retry_prompt_en": {"type": "null"},
+            "next_question_en": {"type": "null"},
+            "uncertainty_reason": {"type": "string", "minLength": 1, "maxLength": 240}
+          }
+        }
+      ]
+    }
+  ]
+}

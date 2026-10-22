@@ -1,3 +1,9 @@
+# Language Conversation
+
+앱 설치와 실행은 [설치 안내](docs/INSTALL.ko.md), 현재 검수 결과는 [TEST_REPORT](docs/TEST_REPORT.md)를 확인하세요. 실제 자동 음성 MVP는 실기기·지연 검수가 남아 있습니다.
+
+---
+
 # Luna Chat Coder
 
 [English README](README.md)
@@ -189,3 +195,5 @@ Protocol은 작게 유지합니다. constrained chat-based repository developmen
 ## 선택형 보안·역공학 기능
 
 Security Ops는 업무 라우팅 제안, 범위 검사, 증거 무결성 검사, 설치 도구 탐색을 제공합니다. REA는 역공학 작업에서만 선택하는 정적 분석 연결이며 자동 설치·MCP 등록은 하지 않습니다. [사용법과 제약](docs/SECURITY_OPS.ko.md)을 참고하십시오. 기존 프로젝트와 설치된 Codex 설정에는 자동 반영되지 않습니다.
+
+외부 테스트 배포·PC 재시작·페어링 안내: [Cloudflare Pages 운영](docs/DEPLOYMENT.ko.md).

@@ -1,3 +1,30 @@
+# Language Conversation
+
+Personal mobile English conversation app: React/TypeScript/Vite + FastAPI + SQLite, local Ollama + whisper.cpp + browser speech output. No paid inference API integration or public deployment.
+
+**Development / review-ready, not a verified automatic-voice MVP.** Real iPhone acceptance and delayed learning experiments are pending; the measured local model exceeds the latency target.
+
+- [설치·PC 실행·iPhone HTTPS 안내](docs/INSTALL.ko.md)
+- [검수 결과와 단계별 상태](docs/TEST_REPORT.md)
+- [모델·라이선스·실측](docs/MODEL_REPORT.md)
+- [실제 기기 확인표](docs/DEVICE_CHECKLIST.md)
+- [알려진 제약](docs/LIMITATIONS.md)
+- [구현 선택 기록](docs/DECISIONS.md)
+- [구현 기준](english_conversation_codex_final_spec_v1.md)
+
+Quick PC development after dependency install and UI build:
+
+```powershell
+./scripts/start_stt.ps1
+# Separate terminal:
+./scripts/start.ps1 -LocalHttp
+# Separate terminal, then enter this one-time code in the app:
+./scripts/pair.ps1
+```
+
+The existing Luna repository documentation is preserved below.
+
+---
 # Luna Chat Coder
 
 [한국어 README](README.ko.md)
@@ -189,3 +216,5 @@ Keep the protocol small. Add rules only when they prevent a repeatable failure i
 ## Optional security and reverse analysis
 
 Security Ops adds advisory domain triage, scope and evidence checks, and read-only tool discovery. REA is a separate opt-in static artifact adapter; routine development and diagnosis do not load it. See [usage and limits](docs/SECURITY_OPS.ko.md). Existing projects and Codex installations are not migrated automatically.
+
+External test deployment and pairing: [Cloudflare Pages runbook](docs/DEPLOYMENT.ko.md).

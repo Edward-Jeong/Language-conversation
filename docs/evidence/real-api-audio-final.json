@@ -1,0 +1,80 @@
+{
+  "scope": "API TestClient -> FFmpeg -> actual whisper.cpp -> actual Ollama -> validated server result; synthetic English, no real iPhone/TTS",
+  "provider": "real",
+  "model": "gemma3:4b",
+  "status_code": 200,
+  "server_roundtrip_ms": 32526.5,
+  "result": {
+    "turn": {
+      "id": "8b26c19d-be91-4dc3-bdae-6f1e668ff783",
+      "session_id": "a85ad817-7dd3-4c01-8c02-abe6d6d99394",
+      "role": "user",
+      "attempt_kind": "initial",
+      "parent_turn_id": null,
+      "text": "I would like a cup of coffee, please.",
+      "transcript_version": 1,
+      "intent_id": "order_drink",
+      "task_variant": "initial",
+      "created_at": "2026-10-22T03:09:37.896744+00:00"
+    },
+    "evaluation": {
+      "schema_version": "1",
+      "turn_id": "8b26c19d-be91-4dc3-bdae-6f1e668ff783",
+      "transcript_version": 1,
+      "evaluation_status": "ready",
+      "intent_achieved": true,
+      "meaning_summary_ko": "커피를 주문하고 싶다고 말함",
+      "correction": {
+        "needed": false,
+        "original_span": null,
+        "suggested_en": null,
+        "reason_ko": null
+      },
+      "optional_alternative": {
+        "text_en": "Could I get a coffee, please?",
+        "usage_ko": "같은 요청을 조금 다르게 말할 때"
+      },
+      "retry_prompt_en": null,
+      "next_question_en": "Would you like that hot or iced?",
+      "uncertainty_reason": null,
+      "assistance_level": "independent_production",
+      "outcome": "success"
+    },
+    "session": {
+      "id": "a85ad817-7dd3-4c01-8c02-abe6d6d99394",
+      "scenario_id": "cafe-order",
+      "status": "active",
+      "learning_state": "question",
+      "media_state": "idle",
+      "question": {
+        "turn_id": "04106bbe-3ec4-4499-95ec-9ac1eb36e799",
+        "text_en": "Would you like that hot or iced?",
+        "translation_ko": "뜨겁게 드릴까요, 차갑게 드릴까요?",
+        "intent_id": "change_order",
+        "task_variant": "variation",
+        "support_level": "A"
+      },
+      "current_turn": null,
+      "current_evaluation": null,
+      "pending_next_question": false,
+      "retry_count": 0,
+      "max_retries": 2,
+      "response_revision": 2,
+      "updated_at": "2026-10-22T03:10:08.122884+00:00"
+    },
+    "support_progress": {
+      "intent_id": "order_drink",
+      "current_level": "A",
+      "proposed_level": null,
+      "distinct_independent_successes": 1
+    },
+    "transcription": {
+      "text": "I would like a cup of coffee, please.",
+      "provider": "whisper.cpp",
+      "latency_ms": 2226,
+      "source_mime_type": "audio/wav"
+    }
+  },
+  "concurrent_quality_probe": false,
+  "mobile_e2e_ms": null
+}

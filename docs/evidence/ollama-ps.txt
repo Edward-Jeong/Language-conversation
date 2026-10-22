@@ -1,0 +1,2 @@
+NAME         ID              SIZE      PROCESSOR    CONTEXT    RUNNER      UNTIL
+gemma3:4b    a2af6cc3eb7f    2.9 GB    100% CPU     4096       llamacpp    4 minutes from now

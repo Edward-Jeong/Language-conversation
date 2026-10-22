@@ -1,0 +1,170 @@
+{
+  "schema_version": "1",
+  "scenarios": [
+    {
+      "id": "cafe-order",
+      "version": 1,
+      "title_ko": "카페에서 주문하기",
+      "description_ko": "음료를 주문하고 크기·옵션·품절 상황에 대응합니다.",
+      "intents": [
+        {"id": "order_drink", "description_ko": "원하는 음료를 정중하게 주문하기", "stem": "I'd like ..., please."},
+        {"id": "change_order", "description_ko": "크기나 옵션을 변경하기", "stem": "Could I change ... to ...?"},
+        {"id": "choose_alternative", "description_ko": "품절일 때 다른 메뉴 고르기", "stem": "Then I'll have ... instead."}
+      ],
+      "opening_questions": [
+        {"text_en": "Hi! What would you like to order?", "intent_id": "order_drink"},
+        {"text_en": "What size would you like?", "intent_id": "change_order"},
+        {"text_en": "That drink is sold out. Would you like something else?", "intent_id": "choose_alternative"}
+      ],
+      "acceptable_alternatives": ["Could I get a latte, please?", "I'll have an iced tea instead."],
+      "follow_up_questions": [
+        {"text_en": "Would you like that hot or iced?", "intent_id": "change_order"},
+        {"text_en": "Is that for here or to go?", "intent_id": "order_drink"},
+        {"text_en": "Would you like a different size?", "intent_id": "change_order"},
+        {"text_en": "We are out of oat milk. Is regular milk okay?", "intent_id": "choose_alternative"},
+        {"text_en": "Would you like anything else?", "intent_id": "order_drink"}
+      ],
+      "hints": {
+        "order_drink": {"H1": "원하는 음료를 정중하게 말해 보세요.", "H2": "I'd like ...", "H3": "I'd like a small latte, please."},
+        "change_order": {"H1": "바꾸고 싶은 것과 새 선택을 말해 보세요.", "H2": "Could I change ...", "H3": "Could I change it to a large iced latte?"},
+        "choose_alternative": {"H1": "대신 고를 메뉴를 말해 보세요.", "H2": "Then I'll have ...", "H3": "Then I'll have an iced tea instead."}
+      },
+      "transfer_tasks": [
+        {"text_en": "At a bakery, the bread you want is sold out. What do you say?", "intent_id": "choose_alternative"},
+        {"text_en": "You ordered a small juice but want a large one. Ask politely.", "intent_id": "change_order"}
+      ]
+    },
+    {
+      "id": "weekend-story",
+      "version": 1,
+      "title_ko": "주말 이야기",
+      "description_ko": "지난 경험과 이유, 예상 밖의 일을 짧게 설명합니다.",
+      "intents": [
+        {"id": "past_activity", "description_ko": "지난 주말에 한 일 말하기", "stem": "I ... last weekend."},
+        {"id": "give_reason", "description_ko": "그렇게 한 이유 덧붙이기", "stem": "I did that because ..."},
+        {"id": "unexpected_event", "description_ko": "예상 밖의 일 설명하기", "stem": "I was going to ..., but ..."}
+      ],
+      "opening_questions": [
+        {"text_en": "What did you do last weekend?", "intent_id": "past_activity"},
+        {"text_en": "Why did you choose to do that?", "intent_id": "give_reason"},
+        {"text_en": "Did anything unexpected happen?", "intent_id": "unexpected_event"}
+      ],
+      "acceptable_alternatives": ["I spent the weekend at home.", "I stayed in because it rained."],
+      "follow_up_questions": [
+        {"text_en": "Who were you with?", "intent_id": "past_activity"},
+        {"text_en": "How did you feel afterward?", "intent_id": "past_activity"},
+        {"text_en": "What was the weather like?", "intent_id": "give_reason"},
+        {"text_en": "Would you do it again? Why?", "intent_id": "give_reason"},
+        {"text_en": "How did you change your plan?", "intent_id": "unexpected_event"}
+      ],
+      "hints": {
+        "past_activity": {"H1": "지난 주말에 한 일과 장소를 말해 보세요.", "H2": "I ... last weekend.", "H3": "I visited a park last weekend."},
+        "give_reason": {"H1": "왜 그랬는지 because 뒤에 이어 보세요.", "H2": "I did that because ...", "H3": "I stayed home because it was raining."},
+        "unexpected_event": {"H1": "원래 계획과 달라진 일을 연결해 보세요.", "H2": "I was going to ..., but ...", "H3": "I was going to hike, but it started raining."}
+      },
+      "transfer_tasks": [
+        {"text_en": "Tell a coworker why you changed yesterday's dinner plan.", "intent_id": "unexpected_event"},
+        {"text_en": "Tell a friend what you did on your last day off.", "intent_id": "past_activity"}
+      ]
+    },
+    {
+      "id": "introduce-hobby",
+      "version": 1,
+      "title_ko": "취미 소개하기",
+      "description_ko": "취미의 종류, 빈도, 이유를 말하고 함께 하자고 제안합니다.",
+      "intents": [
+        {"id": "state_preference", "description_ko": "좋아하는 취미와 이유 말하기", "stem": "I like ... because ..."},
+        {"id": "describe_frequency", "description_ko": "얼마나 자주 하는지 말하기", "stem": "I usually ... times a week."},
+        {"id": "invite_activity", "description_ko": "같이 하자고 제안하기", "stem": "Would you like to ... with me?"}
+      ],
+      "opening_questions": [
+        {"text_en": "What do you like to do in your free time?", "intent_id": "state_preference"},
+        {"text_en": "How often do you do that?", "intent_id": "describe_frequency"},
+        {"text_en": "How would you invite a friend to join you?", "intent_id": "invite_activity"}
+      ],
+      "acceptable_alternatives": ["I'm into hiking because it helps me relax.", "Do you want to go cycling with me?"],
+      "follow_up_questions": [
+        {"text_en": "How did you get interested in it?", "intent_id": "state_preference"},
+        {"text_en": "Where do you usually do it?", "intent_id": "describe_frequency"},
+        {"text_en": "What activity do you dislike?", "intent_id": "state_preference"},
+        {"text_en": "What would you recommend to a beginner?", "intent_id": "state_preference"},
+        {"text_en": "When would be a good time to do it together?", "intent_id": "invite_activity"}
+      ],
+      "hints": {
+        "state_preference": {"H1": "좋아하는 활동과 이유를 연결해 보세요.", "H2": "I like ... because ...", "H3": "I like hiking because I enjoy being outdoors."},
+        "describe_frequency": {"H1": "일주일이나 한 달을 기준으로 빈도를 말해 보세요.", "H2": "I usually ... times a ...", "H3": "I usually go hiking twice a month."},
+        "invite_activity": {"H1": "상대에게 함께할 의향을 물어보세요.", "H2": "Would you like to ...", "H3": "Would you like to go hiking with me?"}
+      },
+      "transfer_tasks": [
+        {"text_en": "Invite a new neighbor to a simple activity you enjoy.", "intent_id": "invite_activity"},
+        {"text_en": "Recommend a relaxing activity to a tired friend.", "intent_id": "state_preference"}
+      ]
+    },
+    {
+      "id": "restaurant-talk",
+      "version": 1,
+      "title_ko": "식당에서 대화하기",
+      "description_ko": "필요한 것을 요청하고 주문을 확인하거나 정중하게 바로잡습니다.",
+      "intents": [
+        {"id": "request_item", "description_ko": "물이나 메뉴, 계산서 요청하기", "stem": "Could I have ..., please?"},
+        {"id": "confirm_order", "description_ko": "주문 내용을 확인하기", "stem": "Does this come with ...?"},
+        {"id": "correct_mistake", "description_ko": "잘못 나온 주문을 정중히 바로잡기", "stem": "Sorry, I ordered ..., not ..."}
+      ],
+      "opening_questions": [
+        {"text_en": "What would you ask for before ordering?", "intent_id": "request_item"},
+        {"text_en": "Would you like to check what comes with the dish?", "intent_id": "confirm_order"},
+        {"text_en": "This is not what you ordered. What do you say?", "intent_id": "correct_mistake"}
+      ],
+      "acceptable_alternatives": ["May I have the bill, please?", "Excuse me, I asked for the soup, not the salad."],
+      "follow_up_questions": [
+        {"text_en": "How would you ask for some water?", "intent_id": "request_item"},
+        {"text_en": "Would you check whether the meal is spicy?", "intent_id": "confirm_order"},
+        {"text_en": "How would you ask for the bill?", "intent_id": "request_item"},
+        {"text_en": "Your side dish is missing. What do you say?", "intent_id": "correct_mistake"},
+        {"text_en": "Ask whether the dish contains nuts.", "intent_id": "confirm_order"}
+      ],
+      "hints": {
+        "request_item": {"H1": "필요한 것을 정중하게 요청해 보세요.", "H2": "Could I have ...", "H3": "Could I have some water, please?"},
+        "confirm_order": {"H1": "음식에 무엇이 포함되는지 물어보세요.", "H2": "Does this come with ...", "H3": "Does this come with a salad?"},
+        "correct_mistake": {"H1": "내가 주문한 것과 나온 것을 구분해 말해 보세요.", "H2": "Sorry, I ordered ..., not ...", "H3": "Sorry, I ordered the soup, not the salad."}
+      },
+      "transfer_tasks": [
+        {"text_en": "At a hotel, you received the wrong room key. Correct the mistake politely.", "intent_id": "correct_mistake"},
+        {"text_en": "At a store, ask whether a product includes batteries.", "intent_id": "confirm_order"}
+      ]
+    },
+    {
+      "id": "daily-plans",
+      "version": 1,
+      "title_ko": "일상 약속 잡기",
+      "description_ko": "만남을 제안하고 시간·장소를 바꾸거나 정중하게 거절합니다.",
+      "intents": [
+        {"id": "make_suggestion", "description_ko": "활동이나 만남 제안하기", "stem": "How about ...?"},
+        {"id": "change_arrangement", "description_ko": "시간이나 장소 바꾸기", "stem": "Could we meet at ... instead?"},
+        {"id": "decline_with_alternative", "description_ko": "이유와 대안을 덧붙여 거절하기", "stem": "I can't ..., but how about ...?"}
+      ],
+      "opening_questions": [
+        {"text_en": "What would you like to do together this week?", "intent_id": "make_suggestion"},
+        {"text_en": "The original time does not work. What do you say?", "intent_id": "change_arrangement"},
+        {"text_en": "You cannot meet on Friday. Suggest another day.", "intent_id": "decline_with_alternative"}
+      ],
+      "acceptable_alternatives": ["Why don't we meet for coffee?", "Friday doesn't work for me. Could we do Saturday?"],
+      "follow_up_questions": [
+        {"text_en": "Where should we meet?", "intent_id": "change_arrangement"},
+        {"text_en": "What time works best for you?", "intent_id": "change_arrangement"},
+        {"text_en": "The cafe is closed. Suggest another place.", "intent_id": "decline_with_alternative"},
+        {"text_en": "Invite a friend to take a walk.", "intent_id": "make_suggestion"},
+        {"text_en": "You are busy tonight. Offer another time.", "intent_id": "decline_with_alternative"}
+      ],
+      "hints": {
+        "make_suggestion": {"H1": "함께할 활동을 제안해 보세요.", "H2": "How about ...", "H3": "How about getting coffee this weekend?"},
+        "change_arrangement": {"H1": "새 시간이나 장소를 대신 제안해 보세요.", "H2": "Could we meet ... instead?", "H3": "Could we meet at three instead?"},
+        "decline_with_alternative": {"H1": "어렵다고 말한 뒤 가능한 대안을 주세요.", "H2": "I can't ..., but how about ...", "H3": "I can't meet Friday, but how about Saturday?"}
+      },
+      "transfer_tasks": [
+        {"text_en": "A doctor appointment time is inconvenient. Ask for another time.", "intent_id": "change_arrangement"},
+        {"text_en": "Decline a dinner invitation and suggest lunch next week.", "intent_id": "decline_with_alternative"}
+      ]
+    }
+  ]
+}

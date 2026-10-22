@@ -1,0 +1,10 @@
+{
+  "scope": "PC loopback HTTPS verification with explicit CA trust, mock provider; not iPhone/system-trust test",
+  "tls_verified": true,
+  "unauthenticated_denied": true,
+  "secure_httponly_samesite_cookie": true,
+  "allowed_origin_session_created": true,
+  "foreign_origin_denied": true,
+  "one_time_code_reuse_denied": true,
+  "mode": "mock"
+}

@@ -1,0 +1,7 @@
+{
+  "message": "network timeout at: https://registry.npmjs.org/-/npm/v1/security/advisories/bulk",
+  "error": {
+    "summary": "",
+    "detail": ""
+  }
+}

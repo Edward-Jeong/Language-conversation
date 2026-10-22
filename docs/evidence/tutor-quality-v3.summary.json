@@ -1,0 +1,37 @@
+{
+  "source": "docs\\evidence\\tutor-quality-v3.jsonl",
+  "completed": 50,
+  "expected": 50,
+  "complete_fixed_set": true,
+  "categories": {
+    "clear_error": {
+      "count": 15,
+      "heuristic_pass": 15,
+      "required_correction": 15,
+      "unassessable": 0
+    },
+    "normal": {
+      "count": 15,
+      "heuristic_pass": 14,
+      "required_correction": 1,
+      "unassessable": 0
+    },
+    "acceptable_alternative": {
+      "count": 10,
+      "heuristic_pass": 10,
+      "required_correction": 0,
+      "unassessable": 0
+    },
+    "uncertain_or_incomplete": {
+      "count": 10,
+      "heuristic_pass": 10,
+      "required_correction": 0,
+      "unassessable": 7
+    }
+  },
+  "provider_wall_median_ms": 23166.75,
+  "provider_wall_p95_ms": 26560.3,
+  "mobile_end_to_end_ms": null,
+  "human_validation": "pending; heuristic correction detection is not adequacy or accuracy",
+  "readiness": "not accepted as automatic mobile MVP"
+}

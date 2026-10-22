@@ -1,0 +1,7 @@
+{
+  "original_ollama_untouched": true,
+  "test_ca_system_trust_installed": false,
+  "browser_session_closed": "lc-test",
+  "task_servers_stopped": true,
+  "test_certificates_preserved": ".runtime/cert-final-verified"
+}

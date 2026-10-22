@@ -1,0 +1,10 @@
+{
+  "public_deployment": false,
+  "speech_available": true,
+  "scope": "actual start.ps1 -LocalHttp -Port8002 and pair.ps1, project .venv",
+  "health": "ok",
+  "mode": "ollama",
+  "model": "gemma3:4b",
+  "tutor_available": true,
+  "pairing_cli_generated": true
+}

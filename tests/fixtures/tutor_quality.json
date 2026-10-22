@@ -1,0 +1,440 @@
+{
+  "schema_version": "1",
+  "status": "AI-authored fixed expectations; independent human validation pending",
+  "thresholds": {
+    "normal_alternative_false_corrections_max": 1,
+    "clear_errors_appropriate_min": 12
+  },
+  "cases": [
+    {
+      "category": "clear_error",
+      "question": "What did you do yesterday?",
+      "transcript": "I go to the park yesterday.",
+      "expected": "one_required_correction",
+      "grounded_span": "go",
+      "example_fix": "went",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q01"
+    },
+    {
+      "category": "clear_error",
+      "question": "What does your sister like?",
+      "transcript": "She like coffee.",
+      "expected": "one_required_correction",
+      "grounded_span": "like",
+      "example_fix": "likes",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q02"
+    },
+    {
+      "category": "clear_error",
+      "question": "What did you buy?",
+      "transcript": "I buyed a sandwich.",
+      "expected": "one_required_correction",
+      "grounded_span": "buyed",
+      "example_fix": "bought",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q03"
+    },
+    {
+      "category": "clear_error",
+      "question": "How many cups would you like?",
+      "transcript": "I want two cup of tea.",
+      "expected": "one_required_correction",
+      "grounded_span": "cup",
+      "example_fix": "cups",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q04"
+    },
+    {
+      "category": "clear_error",
+      "question": "What are you doing now?",
+      "transcript": "I am cook dinner now.",
+      "expected": "one_required_correction",
+      "grounded_span": "cook",
+      "example_fix": "cooking",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q05"
+    },
+    {
+      "category": "clear_error",
+      "question": "How was your trip?",
+      "transcript": "We was very happy.",
+      "expected": "one_required_correction",
+      "grounded_span": "was",
+      "example_fix": "were",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q06"
+    },
+    {
+      "category": "clear_error",
+      "question": "What will you do tomorrow?",
+      "transcript": "I will to call you tomorrow.",
+      "expected": "one_required_correction",
+      "grounded_span": "will to",
+      "example_fix": "will",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q07"
+    },
+    {
+      "category": "clear_error",
+      "question": "Why are you here?",
+      "transcript": "I am here since two hours.",
+      "expected": "one_required_correction",
+      "grounded_span": "since",
+      "example_fix": "for",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q08"
+    },
+    {
+      "category": "clear_error",
+      "question": "What did you do?",
+      "transcript": "I did not went there.",
+      "expected": "one_required_correction",
+      "grounded_span": "went",
+      "example_fix": "go",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q09"
+    },
+    {
+      "category": "clear_error",
+      "question": "What is your hobby?",
+      "transcript": "I enjoy to swim.",
+      "expected": "one_required_correction",
+      "grounded_span": "to swim",
+      "example_fix": "swimming",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q10"
+    },
+    {
+      "category": "clear_error",
+      "question": "What did you eat?",
+      "transcript": "I ate a apple.",
+      "expected": "one_required_correction",
+      "grounded_span": "a apple",
+      "example_fix": "an apple",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q11"
+    },
+    {
+      "category": "clear_error",
+      "question": "How often do you cook?",
+      "transcript": "She do not cook often.",
+      "expected": "one_required_correction",
+      "grounded_span": "do not",
+      "example_fix": "does not",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q12"
+    },
+    {
+      "category": "clear_error",
+      "question": "Where is your phone?",
+      "transcript": "My phone are on the table.",
+      "expected": "one_required_correction",
+      "grounded_span": "are",
+      "example_fix": "is",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q13"
+    },
+    {
+      "category": "clear_error",
+      "question": "When did you leave?",
+      "transcript": "I left at Monday.",
+      "expected": "one_required_correction",
+      "grounded_span": "at",
+      "example_fix": "on",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q14"
+    },
+    {
+      "category": "clear_error",
+      "question": "What did you do last weekend?",
+      "transcript": "I have went to a cafe last weekend.",
+      "expected": "one_required_correction",
+      "grounded_span": "have went",
+      "example_fix": "went",
+      "rationale": "명시된 시제·일치·수·구문 오류 한 가지. 예시 수정 외의 유효한 수정도 허용.",
+      "id": "Q15"
+    },
+    {
+      "category": "normal",
+      "question": "What would you like?",
+      "transcript": "I would like a latte, please.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q16"
+    },
+    {
+      "category": "normal",
+      "question": "How was your weekend?",
+      "transcript": "I stayed home and read a book.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q17"
+    },
+    {
+      "category": "normal",
+      "question": "What do you enjoy?",
+      "transcript": "I enjoy cooking because it helps me relax.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q18"
+    },
+    {
+      "category": "normal",
+      "question": "When can we meet?",
+      "transcript": "Could we meet at six?",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q19"
+    },
+    {
+      "category": "normal",
+      "question": "Can I help you?",
+      "transcript": "Could I have some water, please?",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q20"
+    },
+    {
+      "category": "normal",
+      "question": "Why do you like walking?",
+      "transcript": "It gives me time to think.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q21"
+    },
+    {
+      "category": "normal",
+      "question": "What did you do?",
+      "transcript": "I went for a walk with my sister.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q22"
+    },
+    {
+      "category": "normal",
+      "question": "How often do you exercise?",
+      "transcript": "I usually exercise twice a week.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q23"
+    },
+    {
+      "category": "normal",
+      "question": "What will you order?",
+      "transcript": "I think I will have the soup.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q24"
+    },
+    {
+      "category": "normal",
+      "question": "Where shall we meet?",
+      "transcript": "How about meeting at the station?",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q25"
+    },
+    {
+      "category": "normal",
+      "question": "Any changes?",
+      "transcript": "Could you make it decaf?",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q26"
+    },
+    {
+      "category": "normal",
+      "question": "What if it rains?",
+      "transcript": "We could go to a museum instead.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q27"
+    },
+    {
+      "category": "normal",
+      "question": "Would you like dessert?",
+      "transcript": "No, thank you. I am full.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q28"
+    },
+    {
+      "category": "normal",
+      "question": "Why did you stay home?",
+      "transcript": "I was tired, so I took a rest.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q29"
+    },
+    {
+      "category": "normal",
+      "question": "Can we change the time?",
+      "transcript": "Sure. Seven works for me.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q30"
+    },
+    {
+      "category": "acceptable_alternative",
+      "question": "What would you like?",
+      "transcript": "Can I get a flat white?",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q31"
+    },
+    {
+      "category": "acceptable_alternative",
+      "question": "How are you?",
+      "transcript": "Pretty good, thanks.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q32"
+    },
+    {
+      "category": "acceptable_alternative",
+      "question": "What did you do?",
+      "transcript": "Not much. Just stayed in.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q33"
+    },
+    {
+      "category": "acceptable_alternative",
+      "question": "Would you like tea?",
+      "transcript": "Yeah, that sounds nice.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q34"
+    },
+    {
+      "category": "acceptable_alternative",
+      "question": "Can you meet on Friday?",
+      "transcript": "Friday works.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q35"
+    },
+    {
+      "category": "acceptable_alternative",
+      "question": "What do you like doing?",
+      "transcript": "I am into hiking.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q36"
+    },
+    {
+      "category": "acceptable_alternative",
+      "question": "How was the film?",
+      "transcript": "It was all right.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q37"
+    },
+    {
+      "category": "acceptable_alternative",
+      "question": "Could you say more?",
+      "transcript": "You know, I just needed a break.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q38"
+    },
+    {
+      "category": "acceptable_alternative",
+      "question": "Anything else?",
+      "transcript": "That is all, cheers.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q39"
+    },
+    {
+      "category": "acceptable_alternative",
+      "question": "Do you want to join us?",
+      "transcript": "I would love to, but I have plans.",
+      "expected": "no_required_correction",
+      "rationale": "의미가 통하는 문법적 답변 또는 일상 구어체. 격식·모범 문자열 차이를 오류로 처리하지 않음.",
+      "id": "Q40"
+    },
+    {
+      "category": "uncertain_or_incomplete",
+      "question": "What did you do?",
+      "transcript": "[inaudible]",
+      "expected": "abstain_or_clarify",
+      "rationale": "침묵·불완전 전사·도움/되묻기: 사실을 지어 교정하지 않고 보류 또는 복구로 처리.",
+      "id": "Q41"
+    },
+    {
+      "category": "uncertain_or_incomplete",
+      "question": "What would you like?",
+      "transcript": "",
+      "expected": "abstain_or_clarify",
+      "rationale": "침묵·불완전 전사·도움/되묻기: 사실을 지어 교정하지 않고 보류 또는 복구로 처리.",
+      "id": "Q42"
+    },
+    {
+      "category": "uncertain_or_incomplete",
+      "question": "Tell me more.",
+      "transcript": "...",
+      "expected": "abstain_or_clarify",
+      "rationale": "침묵·불완전 전사·도움/되묻기: 사실을 지어 교정하지 않고 보류 또는 복구로 처리.",
+      "id": "Q43"
+    },
+    {
+      "category": "uncertain_or_incomplete",
+      "question": "What happened?",
+      "transcript": "I was going to",
+      "expected": "abstain_or_clarify",
+      "rationale": "침묵·불완전 전사·도움/되묻기: 사실을 지어 교정하지 않고 보류 또는 복구로 처리.",
+      "id": "Q44"
+    },
+    {
+      "category": "uncertain_or_incomplete",
+      "question": "What would you like?",
+      "transcript": "[background noise]",
+      "expected": "abstain_or_clarify",
+      "rationale": "침묵·불완전 전사·도움/되묻기: 사실을 지어 교정하지 않고 보류 또는 복구로 처리.",
+      "id": "Q45"
+    },
+    {
+      "category": "uncertain_or_incomplete",
+      "question": "Where did you go?",
+      "transcript": "I went to the [unclear]",
+      "expected": "abstain_or_clarify",
+      "rationale": "침묵·불완전 전사·도움/되묻기: 사실을 지어 교정하지 않고 보류 또는 복구로 처리.",
+      "id": "Q46"
+    },
+    {
+      "category": "uncertain_or_incomplete",
+      "question": "What did you say?",
+      "transcript": "[music]",
+      "expected": "abstain_or_clarify",
+      "rationale": "침묵·불완전 전사·도움/되묻기: 사실을 지어 교정하지 않고 보류 또는 복구로 처리.",
+      "id": "Q47"
+    },
+    {
+      "category": "uncertain_or_incomplete",
+      "question": "How was it?",
+      "transcript": "um, uh",
+      "expected": "abstain_or_clarify",
+      "rationale": "침묵·불완전 전사·도움/되묻기: 사실을 지어 교정하지 않고 보류 또는 복구로 처리.",
+      "id": "Q48"
+    },
+    {
+      "category": "uncertain_or_incomplete",
+      "question": "What are your plans?",
+      "transcript": "Could you say that again?",
+      "expected": "abstain_or_clarify",
+      "rationale": "침묵·불완전 전사·도움/되묻기: 사실을 지어 교정하지 않고 보류 또는 복구로 처리.",
+      "id": "Q49"
+    },
+    {
+      "category": "uncertain_or_incomplete",
+      "question": "What would you like?",
+      "transcript": "커피를 영어로 어떻게 말해요?",
+      "expected": "abstain_or_clarify",
+      "rationale": "침묵·불완전 전사·도움/되묻기: 사실을 지어 교정하지 않고 보류 또는 복구로 처리.",
+      "id": "Q50"
+    }
+  ]
+}

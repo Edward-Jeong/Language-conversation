@@ -1,0 +1,12 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "0D2ECA299C248F965BD0341BCB219DB4B433C7F0C0CE2200D4DF85765E8156A9",
+    "Path": "D:\\Etc\\Work\\Language-conversation\\.runtime\\whisper-bin-x64-v1.7.6.zip"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "60ED5BC3DD14EEA856493D334349B405782DDCAF0028D4B5DF4088345FBA2EFE",
+    "Path": "D:\\Etc\\Work\\Language-conversation\\.runtime\\ggml-base.bin"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "started_at": "2026-10-22T02:48:53.147204+00:00",
+  "model_id": "gemma3:4b",
+  "prompt_sha256": "3e8c226ca9c0a2fed25122b1a0db1be8186de2604a2e22400ddd2ee02fb73cc0",
+  "schema_sha256": "179a8e95fef42f90169ade6bf5e671008d6e0ebcefc5ad32a4c0e2987f42a492",
+  "provider_source_sha256": "1b3c41c93fd6c3f64e55763273a528d09e8099212c652a3e13a269d455c5d3e5",
+  "expected_cases": 50,
+  "human_review": "pending"
+}

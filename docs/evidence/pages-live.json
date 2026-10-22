@@ -1,0 +1,121 @@
+{
+  "scope": "public HTTPS from PC; not iPhone; synthetic audio; real Ollama and whisper.cpp",
+  "url": "https://language-conversation.pages.dev",
+  "checks": {
+    "home_https": 200,
+    "noindex": "noindex, nofollow",
+    "unpaired_scenarios": 401,
+    "pair": 200,
+    "two_cookies": true,
+    "secure_samesite": true,
+    "session_httponly": true,
+    "bad_origin": 403,
+    "no_csrf": 403,
+    "session_create": 200,
+    "stored_session": 200,
+    "api_no_store": "no-store",
+    "end": 200,
+    "logout": 200,
+    "after_logout": 401,
+    "direct_tunnel_without_secret": 403
+  },
+  "capabilities": {
+    "mode": "real",
+    "tutor": {
+      "available": true,
+      "provider": "ollama",
+      "model": "gemma3:4b"
+    },
+    "speech_input": {
+      "available": true,
+      "adapter": "whisper.cpp-http",
+      "max_seconds": 45,
+      "accepted_mime_types": [
+        "audio/mp4",
+        "audio/mpeg",
+        "audio/ogg",
+        "audio/wav",
+        "audio/webm",
+        "audio/x-wav"
+      ]
+    },
+    "timezone": "Asia/Seoul",
+    "authenticated": false,
+    "external_paid_api": false
+  },
+  "audio_roundtrip_ms": 45337.24,
+  "audio_status": 200,
+  "audio_result": {
+    "turn": {
+      "id": "2f3fdd02-1cc0-4072-9edc-36f6c7e30910",
+      "session_id": "355258a9-cd2f-440f-89fa-58ebffd2c300",
+      "role": "user",
+      "attempt_kind": "initial",
+      "parent_turn_id": null,
+      "text": "I would like a cup of coffee, please.",
+      "transcript_version": 1,
+      "intent_id": "order_drink",
+      "task_variant": "initial",
+      "created_at": "2026-10-22T05:04:57.194820+00:00"
+    },
+    "evaluation": {
+      "schema_version": "1",
+      "turn_id": "2f3fdd02-1cc0-4072-9edc-36f6c7e30910",
+      "transcript_version": 1,
+      "evaluation_status": "ready",
+      "intent_achieved": true,
+      "meaning_summary_ko": "커피를 주문하고 싶다고 말함",
+      "correction": {
+        "needed": false,
+        "original_span": null,
+        "suggested_en": null,
+        "reason_ko": null
+      },
+      "optional_alternative": {
+        "text_en": "Could I get a coffee, please?",
+        "usage_ko": "같은 요청을 조금 다르게 말할 때"
+      },
+      "retry_prompt_en": null,
+      "next_question_en": "Would you like that hot or iced?",
+      "uncertainty_reason": null,
+      "assistance_level": "independent_production",
+      "outcome": "success"
+    },
+    "session": {
+      "id": "355258a9-cd2f-440f-89fa-58ebffd2c300",
+      "scenario_id": "cafe-order",
+      "status": "active",
+      "learning_state": "question",
+      "media_state": "idle",
+      "question": {
+        "turn_id": "0600d4be-1c81-4656-97d4-fdd7ec939448",
+        "text_en": "Would you like that hot or iced?",
+        "translation_ko": "뜨겁게 드릴까요, 차갑게 드릴까요?",
+        "intent_id": "change_order",
+        "task_variant": "variation",
+        "support_level": "A"
+      },
+      "current_turn": null,
+      "current_evaluation": null,
+      "pending_next_question": false,
+      "retry_count": 0,
+      "max_retries": 2,
+      "response_revision": 2,
+      "heartbeat_expires_at": "2026-10-22T05:06:24.841059+00:00",
+      "summary": null,
+      "updated_at": "2026-10-22T05:05:39.569399+00:00"
+    },
+    "support_progress": {
+      "intent_id": "order_drink",
+      "current_level": "A",
+      "proposed_level": null,
+      "distinct_independent_successes": 1
+    },
+    "transcription": {
+      "text": "I would like a cup of coffee, please.",
+      "provider": "whisper.cpp",
+      "latency_ms": 2740,
+      "source_mime_type": "audio/wav"
+    }
+  }
+}

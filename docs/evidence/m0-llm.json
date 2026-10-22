@@ -1,0 +1,83 @@
+{
+  "measured_at": "2026-10-22T02:21:23.399902+00:00",
+  "scope": "direct LLM probe, not final tutor contract, STT or mobile E2E",
+  "model": {
+    "name": "gemma3:4b",
+    "model": "gemma3:4b",
+    "modified_at": "2026-05-20T14:50:59.33769+09:00",
+    "size": 3338801804,
+    "digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "gemma3",
+      "families": [
+        "gemma3"
+      ],
+      "parameter_size": "4.3B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 131072,
+      "embedding_length": 2560,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "vision"
+    ]
+  },
+  "ollama_version": {
+    "version": "0.40.3"
+  },
+  "runs": [
+    {
+      "sample_index": 0,
+      "wall_ms": 26552.71,
+      "load_ms": 12995.4207,
+      "eval_ms": 12010.606,
+      "eval_count": 118,
+      "schema_keys_valid": true,
+      "output": {
+        "intent_achieved": true,
+        "correction_needed": true,
+        "suggested_en": "I went to the park yesterday.",
+        "reason_ko": "문법적으로 'go'는 동사형으로 사용되어야 합니다. 'went' (과거형)이 적절합니다. (문법적으로 'go'는 동사형으로 사용되어야 합니다. 'went' (과거형)이 적절합니다.)",
+        "next_question_en": "What did you eat for breakfast?"
+      }
+    },
+    {
+      "sample_index": 1,
+      "wall_ms": 11370.53,
+      "load_ms": 15.0588,
+      "eval_ms": 9312.738,
+      "eval_count": 85,
+      "schema_keys_valid": true,
+      "output": {
+        "intent_achieved": true,
+        "correction_needed": false,
+        "suggested_en": "Could I get an iced latte, please?",
+        "reason_ko": "문장 구조가 자연스럽고 질문에 대한 적절한 답변입니다. (문장 구조가 자연스럽고 질문에 대한 적절한 답변입니다.)",
+        "next_question_en": ""
+      }
+    },
+    {
+      "sample_index": 2,
+      "wall_ms": 8317.62,
+      "load_ms": 14.8427,
+      "eval_ms": 6205.644,
+      "eval_count": 58,
+      "schema_keys_valid": true,
+      "output": {
+        "intent_achieved": true,
+        "correction_needed": false,
+        "suggested_en": "",
+        "reason_ko": "질문과 답변 모두 적절합니다. (Question and answer are both appropriate.)",
+        "next_question_en": ""
+      }
+    }
+  ],
+  "warm_median_ms": 9844.075,
+  "warm_p95_ms": null,
+  "mobile_e2e_ms": null,
+  "paid_api_calls": 0,
+  "network_path": "HTTP loopback only; no hosted provider fallback"
+}

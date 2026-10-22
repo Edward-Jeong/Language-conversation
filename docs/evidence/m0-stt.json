@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-22T02:22:01.055738+00:00",
+  "whisper_cpp": "v1.7.6",
+  "model": "base multilingual",
+  "input": "Windows Microsoft David synthetic voice, not learner audio",
+  "expected": "I would like a cup of coffee, please.",
+  "runs": [
+    {
+      "wall_ms": 1783.46,
+      "result": {
+        "text": " I would like a cup of coffee, please.\n"
+      }
+    },
+    {
+      "wall_ms": 1620.38,
+      "result": {
+        "text": " I would like a cup of coffee, please.\n"
+      }
+    },
+    {
+      "wall_ms": 1726.84,
+      "result": {
+        "text": " I would like a cup of coffee, please.\n"
+      }
+    }
+  ],
+  "iphone": null
+}

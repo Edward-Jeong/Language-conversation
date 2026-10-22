@@ -1,0 +1,77 @@
+{
+  "scope": "API TestClient -> FFmpeg -> actual whisper.cpp -> actual Ollama -> validated server result; synthetic English, no real iPhone/TTS",
+  "provider": "real",
+  "model": "gemma3:4b",
+  "status_code": 200,
+  "server_roundtrip_ms": 98928.7,
+  "result": {
+    "turn": {
+      "id": "a4ad5dfd-4bf8-4fdc-83d3-29ab4fa14ee9",
+      "session_id": "369dfbe9-5895-49ce-867e-36740eb60d07",
+      "role": "user",
+      "attempt_kind": "initial",
+      "parent_turn_id": null,
+      "text": "I would like a cup of coffee, please.",
+      "transcript_version": 1,
+      "intent_id": "order_drink",
+      "task_variant": "initial",
+      "created_at": "2026-10-22T02:45:07.994700+00:00"
+    },
+    "evaluation": {
+      "schema_version": "1",
+      "turn_id": "a4ad5dfd-4bf8-4fdc-83d3-29ab4fa14ee9",
+      "transcript_version": 1,
+      "evaluation_status": "unassessable",
+      "intent_achieved": null,
+      "meaning_summary_ko": null,
+      "correction": {
+        "needed": false,
+        "original_span": null,
+        "suggested_en": null,
+        "reason_ko": null
+      },
+      "optional_alternative": null,
+      "retry_prompt_en": null,
+      "next_question_en": "Would you like that hot or iced?",
+      "uncertainty_reason": "모델 출력 형식을 확인할 수 없습니다: 1 validation error for TutorEvaluation\ncorrection\n  Value error, an unneeded correction must not contain correction deta",
+      "assistance_level": "unassessable",
+      "outcome": "unassessable"
+    },
+    "session": {
+      "id": "369dfbe9-5895-49ce-867e-36740eb60d07",
+      "scenario_id": "cafe-order",
+      "status": "active",
+      "learning_state": "question",
+      "media_state": "idle",
+      "question": {
+        "turn_id": "3da8a565-6f55-4aa9-a83b-9d55149ba2c9",
+        "text_en": "Would you like that hot or iced?",
+        "translation_ko": "뜨겁게 드릴까요, 차갑게 드릴까요?",
+        "intent_id": "change_order",
+        "task_variant": "variation",
+        "support_level": "A"
+      },
+      "current_turn": null,
+      "current_evaluation": null,
+      "pending_next_question": false,
+      "retry_count": 0,
+      "max_retries": 2,
+      "response_revision": 2,
+      "updated_at": "2026-10-22T02:46:42.813527+00:00"
+    },
+    "support_progress": {
+      "intent_id": "order_drink",
+      "current_level": "A",
+      "proposed_level": null,
+      "distinct_independent_successes": 0
+    },
+    "transcription": {
+      "text": "I would like a cup of coffee, please.",
+      "provider": "whisper.cpp",
+      "latency_ms": 4003,
+      "source_mime_type": "audio/wav"
+    }
+  },
+  "concurrent_quality_probe": true,
+  "mobile_e2e_ms": null
+}

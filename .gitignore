@@ -4,3 +4,27 @@ __pycache__/
 # Private case artifacts and machine-local tool state
 work/
 security-tools.local.json
+
+# Language Conversation local dependencies and private data
+.runtime/
+.venv/
+.env
+.env.local
+.cert/
+node_modules/
+apps/web/dist/
+data/
+*.sqlite*
+.pytest_cache/
+
+# Verification intermediates (may contain temporary auth state)
+.playwright-cli/
+.pytest-*/
+.pytest_*/
+.test-*/
+*.tsbuildinfo
+.wrangler/
+.dev.vars*
+.env.*.local
+apps/web/vite.config.js
+apps/web/vite.config.d.ts
